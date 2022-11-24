@@ -1,0 +1,282 @@
+
+-------
+24/31/2022 20:31:48
+-------
+
+Error executing 'create schema couponSystem ' (line 1): Can't create database 'couponsystem'; database exists
+Error executing 'create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) ' (line 8): Table 'companies' already exists
+Error executing 'create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) ' (line 16): Table 'customers' already exists
+Error executing 'create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) ' (line 22): Table 'categories' already exists
+Error executing 'create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) ' (line 37): Table 'coupons' already exists
+Error executing 'create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) ' (line 44): Table 'customers_vs_coupons' already exists
+
+-------
+24/33/2022 20:33:03
+-------
+
+Error executing 'create schema couponSystem ' (line 1): Can't create database 'couponsystem'; database exists
+Error executing 'create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) ' (line 8): Table 'companies' already exists
+Error executing 'create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) ' (line 16): Table 'customers' already exists
+Error executing 'create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) ' (line 22): Table 'categories' already exists
+Error executing 'create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) ' (line 37): Table 'coupons' already exists
+Error executing 'create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) ' (line 44): Table 'customers_vs_coupons' already exists
+
+-------
+24/38/2022 20:38:39
+-------
+
+
+-------
+24/48/2022 20:48:51
+-------
+
+
+-------
+24/51/2022 20:51:46
+-------
+
+Error executing 'create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) ' (line 10): Table 'companies' already exists
+Error executing 'create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) ' (line 18): Table 'customers' already exists
+Error executing 'create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) ' (line 24): Table 'categories' already exists
+Error executing 'create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) ' (line 39): Table 'coupons' already exists
+Error executing 'create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) ' (line 46): Table 'customers_vs_coupons' already exists
+
+-------
+24/54/2022 20:54:31
+-------
+
+
+-------
+24/55/2022 20:55:45
+-------
+
+
+-------
+24/58/2022 20:58:12
+-------
+
+
+-------
+24/04/2022 21:04:09
+-------
+
+Error executing 'create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) ' (line 9): No database selected
+Error executing 'create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) ' (line 17): No database selected
+Error executing 'create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) ' (line 23): No database selected
+Error executing 'insert into Categories values(1, 'Food', 'Food') ' (line 24): No database selected
+Error executing 'insert into Categories values(2, 'Electricity', 'Electricity') ' (line 25): No database selected
+Error executing 'insert into Categories values(3, 'Restaurants', 'Restaurants') ' (line 26): No database selected
+Error executing 'insert into Categories values(4, 'Vacations', 'Vacations') ' (line 27): No database selected
+Error executing 'create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) ' (line 42): No database selected
+Error executing 'create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) ' (line 51): No database selected
+Error executing 'SELECT * FROM Customers_VS_Coupons ' (line 53): No database selected
+Error executing 'SELECT * FROM Coupons ' (line 54): No database selected
+Error executing 'SELECT * FROM Customers ' (line 55): No database selected
+Error executing 'SELECT * FROM Companies ' (line 56): No database selected
+Error executing 'SELECT * FROM Categories ' (line 57): No database selected
+Error executing 'delete from Companies where id = 6 ' (line 59): No database selected
+Error executing 'DROP table Customers_VS_Coupons ' (line 61): No database selected
+Error executing 'DROP table Coupons ' (line 62): No database selected
+Error executing 'DROP table Customers ' (line 63): No database selected
+Error executing 'DROP table Companies ' (line 64): No database selected
+Error executing 'DROP table Categories ' (line 65): No database selected
+Error executing 'delete from Categories where id = 1 ' (line 69): No database selected
+
+-------
+24/05/2022 21:05:37
+-------
+
+
+-------
+24/12/2022 21:12:19
+-------
+
+
+-------
+24/20/2022 21:20:37
+-------
+
+
+-------
+24/21/2022 21:21:29
+-------
+
+Error executing 'create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) ' (line 8): Table 'companies' already exists
+Error executing 'create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) ' (line 16): Table 'customers' already exists
+Error executing 'create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) ' (line 22): Table 'categories' already exists
+Error executing 'insert into Categories values(1, 'Food', 'Food') ' (line 23): Duplicate entry '1' for key 'categories.PRIMARY'
+Error executing 'insert into Categories values(2, 'Electricity', 'Electricity') ' (line 24): Duplicate entry '2' for key 'categories.PRIMARY'
+Error executing 'insert into Categories values(3, 'Restaurants', 'Restaurants') ' (line 25): Duplicate entry '3' for key 'categories.PRIMARY'
+Error executing 'insert into Categories values(4, 'Vacations', 'Vacations') ' (line 26): Duplicate entry '4' for key 'categories.PRIMARY'
+Error executing 'create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) ' (line 41): Table 'coupons' already exists
+Error executing 'create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) ' (line 50): Table 'customers_vs_coupons' already exists
+
+-------
+24/23/2022 21:23:38
+-------
+

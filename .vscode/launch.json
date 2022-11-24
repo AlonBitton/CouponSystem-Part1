@@ -1,0 +1,126 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch AdminFacade",
+            "request": "launch",
+            "mainClass": "Facade.AdminFacade",
+            "projectName": "CouponSystemApp-main_caa11517"
+        },
+        {
+            "type": "java",
+            "name": "Launch CompaniesDBDAO",
+            "request": "launch",
+            "mainClass": "Company.CompaniesDBDAO",
+            "projectName": "CouponSystemApp-main_caa11517"
+        },
+        {
+            "type": "java",
+            "name": "Launch Test",
+            "request": "launch",
+            "mainClass": "Pool.Test",
+            "projectName": "CouponSystemApp-main_caa11517"
+        },
+        {
+            "type": "java",
+            "name": "Launch CustomersDBDAO",
+            "request": "launch",
+            "mainClass": "Customer.CustomersDBDAO",
+            "projectName": "CouponSystemApp-main_caa11517"
+        },
+        {
+            "type": "java",
+            "name": "Launch MainTest",
+            "request": "launch",
+            "mainClass": "Pool.MainTest",
+            "projectName": "CouponSystemApp-main_caa11517"
+        },
+        {
+            "type": "java",
+            "name": "Launch MainTest",
+            "request": "launch",
+            "mainClass": "Pool.MainTest",
+            "projectName": "CouponSystemApp_fada3dcb"
+        },
+        {
+            "type": "java",
+            "name": "Launch CouponsDBDAO",
+            "request": "launch",
+            "mainClass": "Coupon.CouponsDBDAO",
+            "projectName": "CouponSystemApp_fada3dcb"
+        },
+        {
+            "type": "java",
+            "name": "Launch CompanyFacade",
+            "request": "launch",
+            "mainClass": "Facade.CompanyFacade",
+            "projectName": "CouponSystemApp_fada3dcb"
+        },
+        {
+            "type": "java",
+            "name": "Launch CompaniesDBDAO",
+            "request": "launch",
+            "mainClass": "Company.CompaniesDBDAO",
+            "projectName": "CouponSystemApp_fada3dcb"
+        },
+        {
+            "type": "java",
+            "name": "Launch Test",
+            "request": "launch",
+            "mainClass": "Pool.Test",
+            "projectName": "CouponSystemApp_fada3dcb"
+        },
+        {
+            "type": "java",
+            "name": "Launch CustomersDBDAO",
+            "request": "launch",
+            "mainClass": "Customer.CustomersDBDAO",
+            "projectName": "CouponSystemApp_fada3dcb"
+        },
+        {
+            "type": "java",
+            "name": "Launch AdminFacade",
+            "request": "launch",
+            "mainClass": "Facade.AdminFacade",
+            "projectName": "CouponSystemApp_fada3dcb"
+        },
+        {
+            "type": "java",
+            "name": "Launch CouponsDBDAO",
+            "request": "launch",
+            "mainClass": "CouponsDBDAO",
+            "projectName": "CouponSystemApp_fada3dcb"
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch CompaniesDBDAO",
+            "request": "launch",
+            "mainClass": "CompaniesDBDAO",
+            "projectName": "CouponSystemApp_fada3dcb"
+        },
+        {
+            "type": "java",
+            "name": "Launch ConnectionPool",
+            "request": "launch",
+            "mainClass": "ConnectionPool",
+            "projectName": "CouponSystemApp_fada3dcb"
+        },
+        {
+            "type": "java",
+            "name": "Launch CustomersDBDAO",
+            "request": "launch",
+            "mainClass": "CustomersDBDAO",
+            "projectName": "CouponSystemApp_fada3dcb"
+        }
+    ]
+}

@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch ConnectionPool",
+            "request": "launch",
+            "mainClass": "Pool.ConnectionPool",
+            "projectName": "CouponSystemApp-main_caa11517"
+        },
+        {
+            "type": "java",
             "name": "Launch CustomerFacade",
             "request": "launch",
             "mainClass": "Facade.CustomerFacade",

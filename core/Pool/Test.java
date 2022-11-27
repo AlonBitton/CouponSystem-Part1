@@ -12,7 +12,7 @@ import Category.Category;
 import Company.Company;
 import Coupon.Coupon;
 import Customer.Customer;
-import Exception.CouponSystemException;
+
 import Facade.AdminFacade;
 import Facade.ClientFacade;
 import Facade.ClientType;
@@ -25,29 +25,27 @@ public class Test {
 
     private CouponExpirationDailyJob couponExpirationDailyJob;
     private Thread thread;
+
+    /**
+    * The enitre project is automated, CreateDB with {@link #createDB()} & {@link #DropDB}
+    * All the Companies, Customers, Coupons are generated with 
+    * random values for check proof the exsists methods and purchase limits.
+    * for testing its reccomendded to change sleep time at {@link #CouponExpirationDailyJob().run() line 38-39 }
+    * default sleep time set for 1 day.
+     */
     public Test() {
         this.couponExpirationDailyJob = new CouponExpirationDailyJob();
         thread = new Thread(couponExpirationDailyJob);
         System.out.println("=========== Test Started ===========");
+        thread.start();
         DropDB();
         createDB();
-        thread.start();
         loginMangerAdministrator();
         loginMangerComapny();
         loginMangerCustomer();
+        couponExpirationDailyJob.stopJob();
 
-        // DropDB();
-       // couponExpirationDailyJob.stop();
-/*         try {
-            ConnectionPool.getInstance().closeAllConnections();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println("stop???");
-        couponExpirationDailyJob.stop();
-        thread.interrupt(); */
     }
-
 
     public String RandomCompanyNames() {
         String[] names = { "Teva", "Leumi", "Check-Point", "IL-Bank", "Telma", "Osem", "Elite", "Nike", "Adidas" };
@@ -318,6 +316,10 @@ public class Test {
         }
     }
 
+    /**
+     * Automated program create MySQL database using ScriptRunner.
+     * No need to create any Schema / table for this project.
+     */
     private void createDB() {
         try {
             Connection con = ConnectionPool.getInstance().getConnection();
@@ -325,24 +327,23 @@ public class Test {
             String db = "mySQL_CouponSystem.sql";
             runner.runScript(new BufferedReader(new FileReader(db)));
             System.out.println("========== Database Created ===========");
-        } catch (SQLException | CouponSystemException | IOException e) {
+        } catch (SQLException | IOException e) {
             e.getMessage();
         }
     }
 
+    /**
+     * Drop MySQL enitre database.
+     */
     private void DropDB() {
         String sql = "drop SCHEMA CouponSystem";
         try (Connection con = ConnectionPool.getInstance().getConnection();) {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.executeUpdate();
             System.out.println("========== Database Dropped ===========");
-        } catch (SQLException | CouponSystemException e) {
+        } catch (SQLException e) {
             e.getMessage();
         }
     }
 
-    public static void main(String[] args) {
-        Test t1 = new Test();
-
-    }
 }

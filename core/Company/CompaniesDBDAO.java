@@ -19,7 +19,8 @@ public class CompaniesDBDAO implements CompanyDAO {
      */
     public boolean isCompanyExists(String email, String password) {
         String sql = "SELECT email FROM Companies WHERE email = ? AND password = ?";
-        try (Connection con = ConnectionPool.getInstance().getConnection();) {
+        Connection con = ConnectionPool.getInstance().getConnection();
+        try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, email);
             ps.setString(2, password);
@@ -30,6 +31,12 @@ public class CompaniesDBDAO implements CompanyDAO {
             throw new CouponSystemException(ExceptionMessage.AUTHENTICATION_FAILED.getMessage());
         } catch (SQLException | CouponSystemException e) {
             System.out.println(e.getMessage());
+        } finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(con);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
         return false;
 
@@ -44,8 +51,8 @@ public class CompaniesDBDAO implements CompanyDAO {
         String sql = "insert into Companies (id, name, email, password) values(0, ?, ?, ?)"; // get values from
                                                                                              // Company() constractur.
         String sql2 = "select * from Companies where Email = ?";
+        Connection con = ConnectionPool.getInstance().getConnection();
         try {
-            Connection con = ConnectionPool.getInstance().getConnection();
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             PreparedStatement ps2 = con.prepareStatement(sql2);
             ps2.setString(1, company.getEmail());
@@ -66,6 +73,12 @@ public class CompaniesDBDAO implements CompanyDAO {
             return id;
         } catch (SQLException | CouponSystemException e) {
             System.out.println(e.getMessage());
+        }  finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(con);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
         return 0;
 
@@ -75,10 +88,10 @@ public class CompaniesDBDAO implements CompanyDAO {
      * Update exists company Name, email. password.
      * Update exists company by specific CopmanyID
      */
-    public void updateCompany(Company company) {
+    public void updateCompany(Company company){
         String sql = "update Companies set name = ?, email = ?, password = ? where id = ?"; // quarry
+        Connection con = ConnectionPool.getInstance().getConnection();
         try {
-            Connection con = ConnectionPool.getInstance().getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, company.getName()); // set index change name
             ps.setString(2, company.getEmail()); // set index chgange email
@@ -93,8 +106,14 @@ public class CompaniesDBDAO implements CompanyDAO {
             }
             ps.executeUpdate();
             System.out.println("Company has been updated: " + company);
-        }catch(SQLException| CouponSystemException e){
+        }catch(SQLException | CouponSystemException e){
             System.out.println(e.getMessage());
+        } finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(con);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
         return;
     }
@@ -105,14 +124,20 @@ public class CompaniesDBDAO implements CompanyDAO {
      */
     public void deleteCompany(int CompanyID){
         String sql = "delete from Companies where id = ?";
+        Connection con = ConnectionPool.getInstance().getConnection();
         try {
-            Connection con = ConnectionPool.getInstance().getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, CompanyID);
             ps.executeUpdate();
             System.out.println("The Company has been deleted. " + "("+ CompanyID + ")");
-        }catch(SQLException| CouponSystemException e){
+        }catch(SQLException e){
             System.out.println(ExceptionMessage.CUSTOMER_NOT_EXIST.getMessage());
+        }finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(con);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -124,7 +149,8 @@ public class CompaniesDBDAO implements CompanyDAO {
      */
     public void deleteCompanyWithCoupons(int CompanyID){
         String sql = "select * from Coupons where Company_ID = ?";
-        try (Connection con = ConnectionPool.getInstance().getConnection()) {
+        Connection con = ConnectionPool.getInstance().getConnection();
+        try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, CompanyID);
             ResultSet rs = ps.executeQuery();
@@ -144,8 +170,14 @@ public class CompaniesDBDAO implements CompanyDAO {
             ps3.executeUpdate();
             deleteCompany(CompanyID);
             System.out.println("Company has been deleted.");
-        }catch(SQLException| CouponSystemException e){
+        }catch(SQLException e){
             System.out.println(ExceptionMessage.GENERAL_ERROR.getMessage());
+        } finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(con);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -156,7 +188,8 @@ public class CompaniesDBDAO implements CompanyDAO {
     public List<Company> getAllCompanies() {
         String sql = "select * from Companies";
         List<Company> companies = new ArrayList<>();
-        try (Connection con = ConnectionPool.getInstance().getConnection();) {
+        Connection con = ConnectionPool.getInstance().getConnection();
+        try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -169,8 +202,14 @@ public class CompaniesDBDAO implements CompanyDAO {
             }
             System.out.println(companies.toString());
             return companies;
-        }catch(SQLException| CouponSystemException e){
+        }catch(SQLException e){
             System.out.println(ExceptionMessage.GENERAL_ERROR.getMessage());
+        } finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(con);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
         return null;
     }
@@ -181,7 +220,8 @@ public class CompaniesDBDAO implements CompanyDAO {
      */
     public Company getOneCompany(int CompanyID){
         String sql = "select * from Companies where id = ?";
-        try (Connection con = ConnectionPool.getInstance().getConnection();) {
+        Connection con = ConnectionPool.getInstance().getConnection();
+        try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, CompanyID);
             ResultSet rs = ps.executeQuery();
@@ -198,6 +238,12 @@ public class CompaniesDBDAO implements CompanyDAO {
         } catch (SQLException | CouponSystemException e) {
             System.out.println(ExceptionMessage.COMPANY_NOT_EXIST.getMessage());
             System.out.println(e.getMessage());
+        }  finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(con);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
         return null;
     }

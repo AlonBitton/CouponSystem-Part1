@@ -22,7 +22,8 @@ public class CouponsDBDAO implements CouponsDAO {
      */
     public boolean isCouponExists(Coupon coupon) {
         String sql = " SELECT * FROM coupons where Title = ? AND Company_ID = ?";
-        try (Connection con = ConnectionPool.getInstance().getConnection();) {
+        Connection con = ConnectionPool.getInstance().getConnection();
+        try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, coupon.getTitle());
             ps.setObject(2, coupon.getCategory().value);
@@ -32,8 +33,14 @@ public class CouponsDBDAO implements CouponsDAO {
             } 
 
             return false;
-        } catch (SQLException | CouponSystemException e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(con);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
         return false;
     }
@@ -46,8 +53,8 @@ public class CouponsDBDAO implements CouponsDAO {
      */
     public int addCoupon(Coupon coupon){
         String sql = "insert into coupons values(0, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        Connection con = ConnectionPool.getInstance().getConnection();
         try {
-            Connection con = ConnectionPool.getInstance().getConnection();
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             if (isCouponExists(coupon)) {
                 System.out.println("Opertaion failed, Coupon already exists.");
@@ -69,8 +76,14 @@ public class CouponsDBDAO implements CouponsDAO {
                 coupon.setId(id);
                 System.out.println("Coupon added: " + coupon);
                 return id;
-            } catch (SQLException | CouponSystemException e) {
+            } catch (SQLException e) {
                 System.out.println(e.getMessage());
+            } finally {
+                try {
+                    ConnectionPool.getInstance().returnConnection(con);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
             }
             return 0;
     
@@ -83,8 +96,8 @@ public class CouponsDBDAO implements CouponsDAO {
      */
     public void updateCoupon(Coupon coupon){
         String sql = "update coupons set category_id = ?, title = ?, description = ?, start_date = ?, end_date = ?, amount = ?, price = ?, image = ? where id = ? ";
+        Connection con = ConnectionPool.getInstance().getConnection();
         try {
-            Connection con = ConnectionPool.getInstance().getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setObject(1, coupon.getCategory().value);
             ps.setString(2, coupon.getTitle());
@@ -100,8 +113,14 @@ public class CouponsDBDAO implements CouponsDAO {
             }
             ps.executeUpdate();
             System.out.println("The Coupon has been updated: " + coupon);
-        }catch(SQLException| CouponSystemException e){
+        }catch(SQLException e){
             System.out.println(e.getMessage());
+        } finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(con);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
         return;
     }
@@ -113,8 +132,8 @@ public class CouponsDBDAO implements CouponsDAO {
     public List<Coupon> getCompanyAllCoupons(int CompanyID){
         String sql = "select * from coupons where Company_ID = ?";
         List<Coupon> coupons = new ArrayList<>();
+        Connection con = ConnectionPool.getInstance().getConnection();
         try {
-            Connection con = ConnectionPool.getInstance().getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, CompanyID);
             ResultSet rs = ps.executeQuery();
@@ -134,8 +153,14 @@ public class CouponsDBDAO implements CouponsDAO {
             }
             System.out.println(coupons.toString());
             return coupons;
-        }catch(SQLException| CouponSystemException e){
+        }catch(SQLException e){
             System.out.println(e.getMessage());
+        } finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(con);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
         return null;
     }
@@ -148,8 +173,8 @@ public class CouponsDBDAO implements CouponsDAO {
     public List<Coupon> getCompanyCouponsByPrice(int CompanyID, double Price){
         String sql = "select * from coupons where Company_ID = ? AND price < ?";
         List<Coupon> coupons = new ArrayList<>();
+        Connection con = ConnectionPool.getInstance().getConnection();
         try {
-            Connection con = ConnectionPool.getInstance().getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, CompanyID);
             ps.setDouble(2, Price);
@@ -170,8 +195,14 @@ public class CouponsDBDAO implements CouponsDAO {
             }
             System.out.println(coupons.toString());
             return coupons;
-        }catch(SQLException| CouponSystemException e){
+        }catch(SQLException e){
             System.out.println(e.getMessage());
+        } finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(con);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
         return null;
     }
@@ -182,8 +213,8 @@ public class CouponsDBDAO implements CouponsDAO {
     public List<Coupon> getAllCoupons(){
         String sql = "select * from coupons";
         List<Coupon> coupons = new ArrayList<>();
+        Connection con = ConnectionPool.getInstance().getConnection();
         try {
-            Connection con = ConnectionPool.getInstance().getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -201,8 +232,14 @@ public class CouponsDBDAO implements CouponsDAO {
                 coupons.add(coupon);
             }
             return coupons;
-        }catch(SQLException| CouponSystemException e){
+        }catch(SQLException e){
             System.out.println(e.getMessage());
+        } finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(con);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
         return null;
     }
@@ -215,8 +252,8 @@ public class CouponsDBDAO implements CouponsDAO {
     public List<Coupon> getCompanyCouponsByCategory(int CompanyID, int CategoriesID){
         String sql = "select * from coupons where Company_ID = ? AND Category_ID = ?";
         List<Coupon> coupons = new ArrayList<>();
+        Connection con = ConnectionPool.getInstance().getConnection();
         try {
-            Connection con = ConnectionPool.getInstance().getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, CompanyID);
             ps.setInt(2, CategoriesID);
@@ -237,8 +274,14 @@ public class CouponsDBDAO implements CouponsDAO {
             }
             System.out.println(coupons.toString());
             return coupons;
-        }catch(SQLException| CouponSystemException e){
+        }catch(SQLException e){
             System.out.println(e.getMessage());
+        } finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(con);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
         return null;
     }
@@ -250,8 +293,8 @@ public class CouponsDBDAO implements CouponsDAO {
      */
     public int getOneCoupon(int CouponID){
         String sql = "select * from coupons where id = ?";
+        Connection con = ConnectionPool.getInstance().getConnection();
         try {
-            Connection con = ConnectionPool.getInstance().getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, CouponID);
             ResultSet rs = ps.executeQuery();
@@ -273,6 +316,12 @@ public class CouponsDBDAO implements CouponsDAO {
             throw new CouponSystemException(ExceptionMessage.COUPON_NOT_EXIST.getMessage());
         }catch(SQLException| CouponSystemException e){
             System.out.println(e.getMessage());
+        } finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(con);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
         return 0;
     }
@@ -285,7 +334,8 @@ public class CouponsDBDAO implements CouponsDAO {
 
     public int checkAmount(int CouponID) {
         String sql = "select * from coupons where id = ?";
-        try (Connection con = ConnectionPool.getInstance().getConnection()) {
+        Connection con = ConnectionPool.getInstance().getConnection();
+        try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, CouponID);
             ResultSet rs = ps.executeQuery();
@@ -296,6 +346,12 @@ public class CouponsDBDAO implements CouponsDAO {
             throw new CouponSystemException(ExceptionMessage.COUPON_NOT_EXIST.getMessage());
         }catch(SQLException| CouponSystemException e){
             System.out.println(e.getMessage());
+        } finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(con);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
         return 0;
     }
@@ -307,8 +363,8 @@ public class CouponsDBDAO implements CouponsDAO {
      */
     public LocalDate checkExpirationDate(int CouponID) {
         String sql = "select * from coupons where id = ?";
-        try (Connection con = ConnectionPool.getInstance().getConnection()) {
-            PreparedStatement ps = con.prepareStatement(sql);
+        Connection con = ConnectionPool.getInstance().getConnection();
+        try {            PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, CouponID);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -318,6 +374,12 @@ public class CouponsDBDAO implements CouponsDAO {
             throw new CouponSystemException(ExceptionMessage.COUPON_NOT_EXIST.getMessage());
         }catch(SQLException| CouponSystemException e){
             System.out.println(e.getMessage());
+        } finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(con);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
         return null;
     }
@@ -329,8 +391,8 @@ public class CouponsDBDAO implements CouponsDAO {
      */
     public boolean checkIFhaveCoupon(int CustomerID, int CouponID) {
         String sql = "select * from customers_vs_coupons where Customer_id = ? AND Coupon_id = ?";
-        try (Connection con = ConnectionPool.getInstance().getConnection()) {
-            PreparedStatement ps = con.prepareStatement(sql);
+        Connection con = ConnectionPool.getInstance().getConnection();
+        try {            PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, CustomerID);
             ps.setInt(2, CouponID);
             ResultSet rs = ps.executeQuery();
@@ -338,8 +400,14 @@ public class CouponsDBDAO implements CouponsDAO {
                 return true;
             }
             return false;
-        }catch(SQLException| CouponSystemException e){
+        }catch(SQLException e){
             System.out.println(e.getMessage());
+        } finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(con);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
         return false;
     }
@@ -357,8 +425,9 @@ public class CouponsDBDAO implements CouponsDAO {
      */
     public void addCouponPurchase(int CustomerID, int CouponID){
         String insert = "insert into customers_vs_coupons values (?,  ?)";
-        try (Connection con = ConnectionPool.getInstance().getConnection();) {
-            if (checkAmount(CouponID) <= 0) {
+        Connection con = ConnectionPool.getInstance().getConnection();
+        try {
+                        if (checkAmount(CouponID) <= 0) {
                 throw new CouponSystemException(ExceptionMessage.COUPON_AMOUNT_IS_ZERO.getMessage());
             }
             else if (checkExpirationDate(CouponID).isBefore(LocalDate.now())) {
@@ -383,6 +452,12 @@ public class CouponsDBDAO implements CouponsDAO {
             }
         }catch(SQLException| CouponSystemException e){
             System.out.println(e.getMessage());
+        } finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(con);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
         return;
     }
@@ -396,7 +471,8 @@ public class CouponsDBDAO implements CouponsDAO {
     public void deleteCoupon(int CustomerID, int CouponID){
         String sql = "delete from customers_vs_coupons where Customer_id = ? and Coupon_id = ? ";
         String sql2 = "delete from coupons where id = ?";
-        try (Connection con = ConnectionPool.getInstance().getConnection()) {
+        Connection con = ConnectionPool.getInstance().getConnection();
+        try {
             PreparedStatement ps = con.prepareStatement(sql);
             PreparedStatement ps2 = con.prepareStatement(sql2);
             ps.setInt(1, CustomerID);
@@ -405,8 +481,14 @@ public class CouponsDBDAO implements CouponsDAO {
             ps2.setInt(1, CouponID);
             ps2.executeUpdate();
             System.out.println("Coupon " + CouponID + " has been deleted.");
-        }catch(SQLException| CouponSystemException e){
+        }catch(SQLException e){
             System.out.println(ExceptionMessage.COMPANY_NOT_EXIST.getMessage());
+        } finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(con);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -418,7 +500,8 @@ public class CouponsDBDAO implements CouponsDAO {
     public void deleteCoupon(int CouponID){
         String sql = "delete from customers_vs_coupons where Coupon_id = ? ";
         String sql2 = "delete from coupons where id = ?";
-        try (Connection con = ConnectionPool.getInstance().getConnection()) {
+        Connection con = ConnectionPool.getInstance().getConnection();
+        try {
             PreparedStatement ps = con.prepareStatement(sql);
             PreparedStatement ps2 = con.prepareStatement(sql2);
             ps.setInt(1, CouponID);
@@ -426,8 +509,14 @@ public class CouponsDBDAO implements CouponsDAO {
             ps2.setInt(1, CouponID);
             ps2.executeUpdate();
             System.out.println("Coupon " + CouponID + " has been deleted.");
-        }catch(SQLException| CouponSystemException e){
+        }catch(SQLException e){
             System.out.println(ExceptionMessage.COMPANY_NOT_EXIST.getMessage());
+        } finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(con);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 

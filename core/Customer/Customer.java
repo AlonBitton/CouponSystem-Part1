@@ -20,6 +20,7 @@ public class Customer {
         Last_Name = last_Name;
         this.email = email;
         this.password = password;
+        this.coupuns = new ArrayList<>();
     }
 
     public Customer(){
@@ -35,7 +36,7 @@ public class Customer {
         stringBuilder.append(",  Last Name: ").append(Last_Name);
         stringBuilder.append(",  Email: ").append(email);
         stringBuilder.append(",  Password: ").append(password).append("\n");
-        stringBuilder.append(", Coupons:").append(coupuns).append("\n");
+        stringBuilder.append(", Coupons:").append(getCoupuns()).append("\n");
         return stringBuilder.toString();
     }
 
@@ -71,7 +72,7 @@ public class Customer {
         this.password = password;
     }
     public List<Coupon> getCoupuns() {
-        return coupuns;
+        return this.coupuns;
     }
     public void setCoupuns(List<Coupon> coupuns) {
         this.coupuns = coupuns;

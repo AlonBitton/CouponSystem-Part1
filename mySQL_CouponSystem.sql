@@ -1,5 +1,5 @@
+create schema CouponSystem;
 use CouponSystem;
-
 create table Companies(
 ID int primary key auto_increment, 
 name varchar(255),
@@ -20,6 +20,7 @@ ID int primary key auto_increment,
 Name varchar(255),
 Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
 );
+
 insert into Categories values(1, 'Food', 'Food');
 insert into Categories values(2, 'Electricity', 'Electricity');
 insert into Categories values(3, 'Restaurants', 'Restaurants');
@@ -48,3 +49,5 @@ foreign key (Customer_id) references Customers(ID),
 Coupon_id int NOT NULL,
 foreign key (Coupon_id) references Coupons(ID)
 );
+
+

@@ -192,8 +192,9 @@ public class CompaniesDBDAO implements CompanyDAO {
                 company.setEmail(rs.getString("email"));
                 System.out.println(company);
                 return company;
+            } else {
+                throw new CouponSystemException(ExceptionMessage.COMPANY_NOT_EXIST.getMessage());
             }
-            throw new CouponSystemException(ExceptionMessage.COMPANY_NOT_EXIST.getMessage());
         } catch (SQLException | CouponSystemException e) {
             System.out.println(ExceptionMessage.COMPANY_NOT_EXIST.getMessage());
             System.out.println(e.getMessage());

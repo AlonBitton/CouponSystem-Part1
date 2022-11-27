@@ -1,6 +1,4 @@
 package Job;
-
-
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
@@ -23,18 +21,19 @@ public class CouponExpirationDailyJob implements Runnable {
     @Override
     public void run() {
     while(StillRunning){
-        System.out.println("+++++++++++++++++++++++++++++++++");
+        System.out.println("%%%%%%%%%%%%%%%%%%%% Daily Job Running %%%%%%%%%%%%%%%%%%%%");
         List<Coupon> expired = couponsDAO.getAllCoupons(); new HashMap<>();
         for (Coupon coupon : expired) {
             if(coupon.getEnd_Date().isBefore(LocalDate.now())){
                 int id = coupon.getId();
                 couponsDAO.deleteCoupon(id);
+                System.out.println("=========== Expired Coupons deleted " + id +  " ===========");
+
             }
         }
         try {
-            System.out.println("TRY!$@!$");
-            TimeUnit.SECONDS.sleep(10);
-           // TimeUnit.DAYS.sleep(1);
+        TimeUnit.SECONDS.sleep(10); // for testing - check 
+        //TimeUnit.DAYS.sleep(1);
         }catch(InterruptedException e){
             e.printStackTrace();
         }

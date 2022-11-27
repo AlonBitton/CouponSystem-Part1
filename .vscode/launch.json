@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch CustomerFacade",
+            "request": "launch",
+            "mainClass": "Facade.CustomerFacade",
+            "projectName": "CouponSystemApp-main_caa11517"
+        },
+        {
+            "type": "java",
+            "name": "Launch CouponsDBDAO",
+            "request": "launch",
+            "mainClass": "Coupon.CouponsDBDAO",
+            "projectName": "CouponSystemApp-main_caa11517"
+        },
+        {
+            "type": "java",
             "name": "Launch AdminFacade",
             "request": "launch",
             "mainClass": "Facade.AdminFacade",

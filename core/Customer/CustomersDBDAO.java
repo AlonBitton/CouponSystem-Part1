@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import Category.Category;
 import Coupon.Coupon;
 import Exception.CouponSystemException;
 import Exception.ExceptionMessage;
@@ -71,7 +73,6 @@ public class CustomersDBDAO implements CustomerDAO {
             rs.next();
             int id = rs.getInt(1);
             customer.setId(id);
-            System.out.println("New Customer ID: " + id);
             System.out.println(customer);
             return id;
         } catch (SQLException | CouponSystemException e) {
@@ -133,7 +134,7 @@ public class CustomersDBDAO implements CustomerDAO {
             ps.setInt(1, CustomerID);
             deleteCutomerCoupons(CustomerID);
             ps.executeUpdate();
-            System.out.println("Customer has been deleted. ");
+            System.out.println("The Customer has been deleted. " + "("+ CustomerID + ")");
         }catch(SQLException| CouponSystemException e){
             System.out.println(ExceptionMessage.CUSTOMER_NOT_EXIST.getMessage());
         }
@@ -154,7 +155,7 @@ public class CustomersDBDAO implements CustomerDAO {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, CustomerID);
             ps.executeUpdate();
-            System.out.println("Customer " + CustomerID + " Coupons has been deleted.");
+            System.out.println("Customer (" + CustomerID + ") Coupons has been deleted.");
         }catch(SQLException| CouponSystemException e){
             System.out.println(ExceptionMessage.GENERAL_ERROR.getMessage());
         }
@@ -184,8 +185,8 @@ public class CustomersDBDAO implements CustomerDAO {
             while (rs.next()) {
                 Coupon coupon = new Coupon();
                 coupon.setId(rs.getInt("id"));
-                coupon.setCompanies_ID(rs.getInt("Companies_id"));
-                coupon.setCompanies_ID(rs.getInt("category_id"));
+                coupon.setCompanies_ID(rs.getInt("Company_ID"));
+                coupon.setCategory(Category.getCategoryByValue(rs.getInt("Category_ID")));
                 coupon.setTitle(rs.getString("title"));
                 coupon.setDescripton(rs.getString("description"));
                 coupon.setStart_Date(rs.getDate("start_date").toLocalDate());
@@ -198,6 +199,7 @@ public class CustomersDBDAO implements CustomerDAO {
             System.out.println(coupons.toString());
             return coupons;
         }catch(SQLException| CouponSystemException e){
+            System.out.println(sql);
             System.out.println(ExceptionMessage.GENERAL_ERROR.getMessage());
         }
         return null;
@@ -226,12 +228,12 @@ public class CustomersDBDAO implements CustomerDAO {
             List<Coupon> coupons = new ArrayList<>();
             while (rs.next()) {
                 Coupon coupon = new Coupon();
-                coupon.setId(rs.getInt("id"));
-                coupon.setCompanies_ID(rs.getInt("Companies_id"));
-                coupon.setCompanies_ID(rs.getInt("category_id"));
-                coupon.setTitle(rs.getString("title"));
+                coupon.setId(rs.getInt("ID"));
+                coupon.setCompanies_ID(rs.getInt("Company_ID"));
+                coupon.setCategory(Category.getCategoryByValue(rs.getInt("Category_ID")));
+                coupon.setTitle(rs.getString("Title"));
                 coupon.setDescripton(rs.getString("description"));
-                coupon.setStart_Date(rs.getDate("start_date").toLocalDate());
+                coupon.setStart_Date(rs.getDate("Start_Date").toLocalDate());
                 coupon.setEnd_Date(rs.getDate("end_date").toLocalDate());
                 coupon.setAmoumt(rs.getInt("amount"));
                 coupon.setPrice(rs.getDouble("price"));
@@ -265,16 +267,16 @@ public class CustomersDBDAO implements CustomerDAO {
             List<Coupon> coupons = new ArrayList<>();
             while (rs.next()) {
                 Coupon coupon = new Coupon();
-                coupon.setId(rs.getInt("id"));
-                coupon.setCompanies_ID(rs.getInt("Companies_id"));
-                coupon.setCompanies_ID(rs.getInt("category_id"));
-                coupon.setTitle(rs.getString("title"));
-                coupon.setDescripton(rs.getString("description"));
-                coupon.setStart_Date(rs.getDate("start_date").toLocalDate());
-                coupon.setEnd_Date(rs.getDate("end_date").toLocalDate());
-                coupon.setAmoumt(rs.getInt("amount"));
-                coupon.setPrice(rs.getDouble("price"));
-                coupon.setImage(rs.getString("image"));
+                coupon.setId(rs.getInt("ID"));
+                coupon.setCompanies_ID(rs.getInt("Company_ID"));
+                coupon.setCategory(Category.getCategoryByValue(rs.getInt("Category_ID")));
+                coupon.setTitle(rs.getString("Title"));
+                coupon.setDescripton(rs.getString("Description"));
+                coupon.setStart_Date(rs.getDate("Start_Date").toLocalDate());
+                coupon.setEnd_Date(rs.getDate("End_Date").toLocalDate());
+                coupon.setAmoumt(rs.getInt("Amount"));
+                coupon.setPrice(rs.getDouble("Price"));
+                coupon.setImage(rs.getString("Image"));
                 coupons.add(coupon);
             }
             System.out.println(coupons.toString());
@@ -342,20 +344,14 @@ public class CustomersDBDAO implements CustomerDAO {
                 customer.setEmail(rs.getString("Email"));
                 System.out.println(customer);
                 return customer;
-            } 
-            throw new CouponSystemException(ExceptionMessage.CUSTOMER_NOT_EXIST.getMessage());
+            } else{ 
+                throw new CouponSystemException(ExceptionMessage.CUSTOMER_NOT_EXIST.getMessage());
+            }
         } catch (SQLException | CouponSystemException e) {
             System.out.println(e.getMessage());
         }
         return null;
     }
 
-    public static void main(String[] args) throws CouponSystemException {
-        CustomersDBDAO cd = new CustomersDBDAO();
-        cd.getAllCustomers();
-
-        
-
-    }
 
 }

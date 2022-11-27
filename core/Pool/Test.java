@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Random;
-import Pool.ConnectionPool;
 import Category.Category;
 import Company.Company;
 import Coupon.Coupon;
@@ -26,71 +25,67 @@ public class Test {
 
     private CouponExpirationDailyJob couponExpirationDailyJob;
     private Thread thread;
-
     public Test() {
         this.couponExpirationDailyJob = new CouponExpirationDailyJob();
         thread = new Thread(couponExpirationDailyJob);
         System.out.println("=========== Test Started ===========");
+        DropDB();
         createDB();
+        thread.start();
         loginMangerAdministrator();
         loginMangerComapny();
-        loginMangerCustomer(); 
-        DropDB();
+        loginMangerCustomer();
 
-        /*          thread.start();
-
-
-        /*
-         *
-         * try {
-         * //ConnectionPool.getInstance().closeAllConnections();
-         * } catch (Exception e) {
-         * e.printStackTrace();
-         * }
-         * System.out.println("stop???");
-         * couponExpirationDailyJob.stop();
-         * thread.interrupt();
-         */
-
+        // DropDB();
+       // couponExpirationDailyJob.stop();
+/*         try {
+            ConnectionPool.getInstance().closeAllConnections();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("stop???");
+        couponExpirationDailyJob.stop();
+        thread.interrupt(); */
     }
 
-    public String RandomCompanyNames(){
-        String[] names = {"Teva", "Leumi", "Check-Point", "IL-Bank", "Telma", "Osem", "Elite", "Nike", "Adidas"};
+
+    public String RandomCompanyNames() {
+        String[] names = { "Teva", "Leumi", "Check-Point", "IL-Bank", "Telma", "Osem", "Elite", "Nike", "Adidas" };
         int ran = (int) (Math.random() * names.length);
         return names[ran];
     }
 
-    public String RandomCustomerNames(){
-    String[] names = {"Dan", "Bob", "Tom", "Eden", "Lea", "Bar", "Mark", "Lee", "Ian", "David"};
-    int ran = (int) (Math.random() * names.length);
-    return names[ran];
+    public String RandomCustomerNames() {
+        String[] names = { "Dan", "Bob", "Tom", "Eden", "Lea", "Bar", "Mark", "Lee", "Ian", "David" };
+        int ran = (int) (Math.random() * names.length);
+        return names[ran];
     }
 
-    private Category randomCategory(){
+    private Category randomCategory() {
         int ran = new Random().nextInt(Category.values().length);
         return Category.values()[ran];
     }
 
-    public double RandomPrice(){
+    public double RandomPrice() {
         double price = (int) (Math.random() * 101);
         return price;
     }
 
-    public String Email(){
+    public String Email() {
         return "@email.com";
     }
-  
-public void loginMangerAdministrator(){
-        LoginManager LM=LoginManager.getInstance();
+
+    public void loginMangerAdministrator() {
+        LoginManager LM = LoginManager.getInstance();
         ClientFacade clientFacade;
-        clientFacade = LM.login("admin@admin.com","admin", ClientType.ADMINISTRATOR);
-        if(clientFacade instanceof AdminFacade) {
+        clientFacade = LM.login("admin@admin.com", "admin", ClientType.ADMINISTRATOR);
+        if (clientFacade instanceof AdminFacade) {
             AdminFacade adminFacade = (AdminFacade) clientFacade;
             System.out.println("=========== Start Admin Facade ===========");
             // CompanyFacade Login Company
             Company c1 = new Company(0, "C1@email.com", "C1C1");
             adminFacade.addCompany(c1);
-
+            System.out.println("=========== Create new Companies ===========");
             Company company1 = new Company();
             company1.setName(RandomCompanyNames());
             company1.setEmail(company1.getName() + Email());
@@ -108,7 +103,7 @@ public void loginMangerAdministrator(){
             company3.setEmail(company3.getName() + Email());
             company3.setPassword(company3.getName() + "1234");
             adminFacade.addCompany(company3);
-            
+
             Company company4 = new Company();
             company4.setName(RandomCompanyNames());
             company4.setEmail(company4.getName() + Email());
@@ -123,22 +118,22 @@ public void loginMangerAdministrator(){
 
             System.out.println("=========== Print all Companies ===========");
             adminFacade.getAllCompanies();
-            
-            System.out.println("=========== Update Company" +"(" + company1.getId() + ")"+ "===========");
-            Company company6 = new Company(company1.getId(), company1.getName() + "Updated", company1.getEmail() + "Updated", company1.getPassword() + "Updated");
+
+            System.out.println("=========== Update Company" + "(" + company1.getId() + ")" + "===========");
+            Company company6 = new Company(company1.getId(), company1.getName() + "Updated",
+                    company1.getEmail() + "Updated", company1.getPassword() + "Updated");
             adminFacade.updateCompany(company6);
 
-            System.out.println("=========== Delete Company" +"(" + company1.getId() + ")"+ "===========");
+            System.out.println("=========== Delete Company" + "(" + company1.getId() + ")" + "===========");
             adminFacade.deleteCompany(company1.getId());
 
-            
             System.out.println("=========== Verify Company has been Deleted ===========");
             adminFacade.getOneCompany(company1.getId());
 
             // CustomerFacade login Customer
             Customer A1 = new Customer(0, "A1", "A1", "A1@email.com", "A1A1");
             adminFacade.addCustomer(A1);
-
+            System.out.println("=========== Create new Customers ===========");
             Customer customer1 = new Customer();
             customer1.setFirst_Name(RandomCustomerNames());
             customer1.setLast_Name(RandomCustomerNames());
@@ -177,7 +172,7 @@ public void loginMangerAdministrator(){
             System.out.println("=========== Print all Customers ===========");
             adminFacade.getAllCustomers();
 
-            System.out.println("=========== Delete Customer" +"(" + customer1.getId() + ")"+ "===========");
+            System.out.println("=========== Delete Customer" + "(" + customer1.getId() + ")" + "===========");
             adminFacade.deleteCutomer(customer1.getId());
 
             System.out.println("=========== Verify Customer has been Deleted ===========");
@@ -185,15 +180,14 @@ public void loginMangerAdministrator(){
 
             System.out.println("=========== End Admin Facade ===========");
         }
-        
 
     }
 
-public void loginMangerComapny(){
-        LoginManager LM=LoginManager.getInstance();
+    public void loginMangerComapny() {
+        LoginManager LM = LoginManager.getInstance();
         ClientFacade clientFacade;
-        clientFacade = LM.login("C1@email.com","C1C1", ClientType.COMPANY);
-        if(clientFacade instanceof CompanyFacade){
+        clientFacade = LM.login("C1@email.com", "C1C1", ClientType.COMPANY);
+        if (clientFacade instanceof CompanyFacade) {
             CompanyFacade companyFacade = (CompanyFacade) clientFacade;
 
             System.out.println("=========== Start Company Facade ===========");
@@ -205,9 +199,9 @@ public void loginMangerComapny(){
             coupon1.setDescripton(coupon1.getTitle() + " Description");
             coupon1.setImage(coupon1.getTitle() + " image");
             coupon1.setStart_Date(LocalDate.now());
-            coupon1.setEnd_Date(LocalDate.now().plusDays(1));
-            coupon1.setAmoumt(5);
-            coupon1.setPrice((Math.random() * 101));
+            coupon1.setEnd_Date(LocalDate.now().minusDays(2));
+            coupon1.setAmoumt(0);
+            coupon1.setPrice(RandomPrice());
             companyFacade.addCoupon(coupon1);
 
             Coupon coupon2 = new Coupon(0, 0, null, null, null, null, null, null, 0, 0);
@@ -217,7 +211,7 @@ public void loginMangerComapny(){
             coupon2.setDescripton(coupon2.getTitle() + " Description");
             coupon2.setImage(coupon2.getTitle() + " image");
             coupon2.setStart_Date(LocalDate.now());
-            coupon2.setEnd_Date(LocalDate.now().plusDays(1));
+            coupon2.setEnd_Date(LocalDate.now().minusDays(2));
             coupon2.setAmoumt(5);
             coupon2.setPrice(RandomPrice());
             companyFacade.addCoupon(coupon2);
@@ -229,7 +223,7 @@ public void loginMangerComapny(){
             coupon3.setDescripton(coupon3.getTitle() + " Description");
             coupon3.setImage(coupon3.getTitle() + " image");
             coupon3.setStart_Date(LocalDate.now());
-            coupon3.setEnd_Date(LocalDate.now().plusDays(1));
+            coupon3.setEnd_Date(LocalDate.now().minusDays(4));
             coupon3.setAmoumt(5);
             coupon3.setPrice(RandomPrice());
             companyFacade.addCoupon(coupon3);
@@ -260,11 +254,10 @@ public void loginMangerComapny(){
 
             System.out.println("=========== Print Coupon" + "(" + coupon5.getId() + ")" + " Before Update ===========");
             System.out.println(coupon5);
-
-            Coupon coupon6 = new Coupon();
+            Coupon coupon6 = new Coupon(0, 0, null, null, null, null, null, null, 0, 0);
             coupon6.setCompanies_ID(companyFacade.getCompanyID());
             coupon6.setCategory(coupon5.getCategory());
-            coupon6.setTitle(coupon5.getTitle() + " Updated" );
+            coupon6.setTitle(coupon5.getTitle() + " Updated");
             coupon6.setDescripton(coupon5.getDescripton() + " Updated");
             coupon6.setImage(coupon5.getImage() + " Updated");
             coupon6.setStart_Date(LocalDate.now());
@@ -281,19 +274,20 @@ public void loginMangerComapny(){
 
             System.out.println("=========== Delete Coupon" + "(" + coupon6.getId() + ")" + " ===========");
             companyFacade.deleteCoupon(companyFacade.getCompanyID(), coupon6.getId());
-            
+
             System.out.println("=========== Print all Coupons By Category ===========");
             companyFacade.getCompanyCouponsByCategory(companyFacade.getCompanyID(), randomCategory().value);
-            
-            System.out.println("=========== Print all Coupons By Price ===========");
-            companyFacade.getCompanyCouponsByPrice(companyFacade.getCompanyID(), 25);
+
+            int price = (int) (Math.random() * 50 + 40);
+            System.out.println("=========== Print all Coupons By Price " + price + "===========");
+            companyFacade.getCompanyCouponsByPrice(companyFacade.getCompanyID(), price);
 
             System.out.println("=========== End Company Facade ===========");
         }
     }
- 
-public void loginMangerCustomer() {
-     LoginManager LM = LoginManager.getInstance();
+
+    public void loginMangerCustomer() {
+        LoginManager LM = LoginManager.getInstance();
         ClientFacade clientFacade;
         clientFacade = LM.login("A1@email.com", "A1A1", ClientType.CUSTOMER);
         if (clientFacade instanceof CustomerFacade) {
@@ -311,10 +305,11 @@ public void loginMangerCustomer() {
             customerFacade.getCustomerCoupons();
 
             System.out.println("=========== Print all Coupons By Category ===========");
-            customerFacade.getCouponsByCategory(randomCategory().value);
+            customerFacade.getCouponsByCategory(3);
 
-            System.out.println("=========== Print all Coupons By Price ===========");
-            customerFacade.getCouponsByPrice(RandomPrice());
+            int price = (int) (Math.random() * 50 + 40);
+            System.out.println("=========== Print all Coupons By Price " + price + "===========");
+            customerFacade.getCouponsByPrice(price);
 
             System.out.println("=========== Print Customer Details ===========");
             customerFacade.getCustomerDetails();
@@ -323,32 +318,31 @@ public void loginMangerCustomer() {
         }
     }
 
+    private void createDB() {
+        try {
+            Connection con = ConnectionPool.getInstance().getConnection();
+            ScriptRunner runner = new ScriptRunner(con, false, false);
+            String db = "mySQL_CouponSystem.sql";
+            runner.runScript(new BufferedReader(new FileReader(db)));
+            System.out.println("========== Database Created ===========");
+        } catch (SQLException | CouponSystemException | IOException e) {
+            e.getMessage();
+        }
+    }
 
-public void createDB(){
-    try {
-        Connection con = ConnectionPool.getInstance().getConnection();
-        ScriptRunner runner = new ScriptRunner(con, false, false);
-        String db = "mySQL_CouponSystem.sql";
-        runner.runScript(new BufferedReader(new FileReader(db)));
-        System.out.println("========== Database Created ===========");
-    } catch (SQLException | CouponSystemException | IOException e) {
-        e.getMessage();
-    } 
-}
-
-private  void DropDB(){
-    String sql = "drop SCHEMA CouponSystem";
-        try (Connection con = ConnectionPool.getInstance().getConnection();){
+    private void DropDB() {
+        String sql = "drop SCHEMA CouponSystem";
+        try (Connection con = ConnectionPool.getInstance().getConnection();) {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.executeUpdate();
             System.out.println("========== Database Dropped ===========");
         } catch (SQLException | CouponSystemException e) {
             e.getMessage();
         }
-}
+    }
 
     public static void main(String[] args) {
         Test t1 = new Test();
-    }
 
+    }
 }

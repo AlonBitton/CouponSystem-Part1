@@ -58,7 +58,8 @@ public class CompaniesDBDAO implements CompanyDAO {
             ps2.setString(1, company.getEmail());
             ResultSet rs2 = ps2.executeQuery();
             if (rs2.next()) {
-                throw new CouponSystemException(ExceptionMessage.EMAIL_ALREADY_EXIST.getMessage() + " " + company.getEmail());
+                throw new CouponSystemException(
+                        ExceptionMessage.EMAIL_ALREADY_EXIST.getMessage() + " " + company.getEmail());
             }
             ps.setString(1, company.getName());
             ps.setString(2, company.getEmail());
@@ -68,12 +69,11 @@ public class CompaniesDBDAO implements CompanyDAO {
             rs.next();
             int id = rs.getInt(1);
             company.setId(id);
-            System.out.println("New Company id: " + id);
             System.out.println(company);
             return id;
         } catch (SQLException | CouponSystemException e) {
             System.out.println(e.getMessage());
-        }  finally {
+        } finally {
             try {
                 ConnectionPool.getInstance().returnConnection(con);
             } catch (Exception e) {
@@ -88,7 +88,7 @@ public class CompaniesDBDAO implements CompanyDAO {
      * Update exists company Name, email. password.
      * Update exists company by specific CopmanyID
      */
-    public void updateCompany(Company company){
+    public void updateCompany(Company company) {
         String sql = "update Companies set name = ?, email = ?, password = ? where id = ?"; // quarry
         Connection con = ConnectionPool.getInstance().getConnection();
         try {
@@ -102,11 +102,12 @@ public class CompaniesDBDAO implements CompanyDAO {
             ps2.setString(1, company.getEmail());
             ResultSet rs2 = ps2.executeQuery();
             if (rs2.next()) {
-                throw new CouponSystemException(ExceptionMessage.EMAIL_ALREADY_EXIST.getMessage() + " " + company.getEmail());
+                throw new CouponSystemException(
+                        ExceptionMessage.EMAIL_ALREADY_EXIST.getMessage() + " " + company.getEmail());
             }
             ps.executeUpdate();
             System.out.println("Company has been updated: " + company);
-        }catch(SQLException | CouponSystemException e){
+        } catch (SQLException | CouponSystemException e) {
             System.out.println(e.getMessage());
         } finally {
             try {
@@ -122,17 +123,17 @@ public class CompaniesDBDAO implements CompanyDAO {
      * Delete exists company by sending Query to DB,
      * Will work only if company not own any coupons!!
      */
-    public void deleteCompany(int CompanyID){
+    public void deleteCompany(int CompanyID) {
         String sql = "delete from Companies where id = ?";
         Connection con = ConnectionPool.getInstance().getConnection();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, CompanyID);
             ps.executeUpdate();
-            System.out.println("The Company has been deleted. " + "("+ CompanyID + ")");
-        }catch(SQLException e){
+            System.out.println("The Company has been deleted. " + "(" + CompanyID + ")");
+        } catch (SQLException e) {
             System.out.println(ExceptionMessage.CUSTOMER_NOT_EXIST.getMessage());
-        }finally {
+        } finally {
             try {
                 ConnectionPool.getInstance().returnConnection(con);
             } catch (Exception e) {
@@ -147,7 +148,7 @@ public class CompaniesDBDAO implements CompanyDAO {
      * Then deletes all companies coupons by sending Query to DB,
      * Delete exists company by sending Query to DB.
      */
-    public void deleteCompanyWithCoupons(int CompanyID){
+    public void deleteCompanyWithCoupons(int CompanyID) {
         String sql = "select * from Coupons where Company_ID = ?";
         Connection con = ConnectionPool.getInstance().getConnection();
         try {
@@ -170,7 +171,7 @@ public class CompaniesDBDAO implements CompanyDAO {
             ps3.executeUpdate();
             deleteCompany(CompanyID);
             System.out.println("Company has been deleted.");
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println(ExceptionMessage.GENERAL_ERROR.getMessage());
         } finally {
             try {
@@ -202,7 +203,7 @@ public class CompaniesDBDAO implements CompanyDAO {
             }
             System.out.println(companies.toString());
             return companies;
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println(ExceptionMessage.GENERAL_ERROR.getMessage());
         } finally {
             try {
@@ -218,7 +219,7 @@ public class CompaniesDBDAO implements CompanyDAO {
      * Get one company identify by CompanyID.
      * return Object -> company / return null if not found.
      */
-    public Company getOneCompany(int CompanyID){
+    public Company getOneCompany(int CompanyID) {
         String sql = "select * from Companies where id = ?";
         Connection con = ConnectionPool.getInstance().getConnection();
         try {
@@ -238,7 +239,7 @@ public class CompaniesDBDAO implements CompanyDAO {
         } catch (SQLException | CouponSystemException e) {
             System.out.println(ExceptionMessage.COMPANY_NOT_EXIST.getMessage());
             System.out.println(e.getMessage());
-        }  finally {
+        } finally {
             try {
                 ConnectionPool.getInstance().returnConnection(con);
             } catch (Exception e) {
@@ -248,11 +249,10 @@ public class CompaniesDBDAO implements CompanyDAO {
         return null;
     }
 
-
     public static void main(String[] args) {
         CompaniesDBDAO cd = new CompaniesDBDAO();
-        Company c1 = new Company(0, "C1", "A1Updated@email.com", "A1A1Updated");
-        cd.addCompany(c1);
+        cd.getOneCompany(1);
+        
     }
 
 }

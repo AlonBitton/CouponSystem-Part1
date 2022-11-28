@@ -18,6 +18,7 @@ public class CustomersDBDAO implements CustomerDAO {
     /**
      * Checks is customer exists by sending Query to DB,
      * Checks if any customer in the DB have the same email and password.
+     * 
      * @param Email
      * @param password
      * @return boolean
@@ -97,6 +98,7 @@ public class CustomersDBDAO implements CustomerDAO {
     /**
      * Update Exists Customer first name, last name. email and password
      * Identify customer by ID number.
+     * 
      * @param customer
      * @throws CouponSystemException
      */
@@ -319,7 +321,7 @@ public class CustomersDBDAO implements CustomerDAO {
                 coupon.setImage(rs.getString("Image"));
                 coupons.add(coupon);
             }
-            System.out.println(coupons.toString());
+            // System.out.println(coupons.toString());
             return coupons;
         } catch (SQLException e) {
             System.out.println(ExceptionMessage.GENERAL_ERROR.getMessage());
@@ -374,6 +376,7 @@ public class CustomersDBDAO implements CustomerDAO {
      * Send Query to program DB, Identify customer by CustomerID to get customer
      * details.
      * Return <Object> Customer OR null if not exists.
+     * 
      * @param CustomerID
      * @return Customer
      * @throws CouponSystemException
@@ -391,6 +394,7 @@ public class CustomersDBDAO implements CustomerDAO {
                 customer.setFirst_Name(rs.getString("First_Name"));
                 customer.setLast_Name(rs.getString("Last_Name"));
                 customer.setEmail(rs.getString("Email"));
+                customer.setPassword(rs.getString("password"));
                 System.out.println(customer);
                 return customer;
             } else {

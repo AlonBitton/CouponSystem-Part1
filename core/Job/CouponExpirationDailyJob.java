@@ -8,7 +8,6 @@ import java.util.concurrent.TimeUnit;
 import Coupon.Coupon;
 import Coupon.CouponsDAO;
 import Coupon.CouponsDBDAO;
-import Exception.CouponSystemException;
 import Pool.ConnectionPool;
 
 public class CouponExpirationDailyJob implements Runnable {
@@ -35,8 +34,8 @@ public class CouponExpirationDailyJob implements Runnable {
                 }
             }
             try {
-                 // TimeUnit.SECONDS.sleep(10); // For testing un-comment this line.
-                TimeUnit.DAYS.sleep(1); // ^ comment this line after uncomment line 38.
+                TimeUnit.SECONDS.sleep(10); // For testing un-comment this line.
+                // TimeUnit.DAYS.sleep(1); // ^ comment this line after uncomment line 38.
             } catch (InterruptedException e) {
                 e.getMessage();
             }

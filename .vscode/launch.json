@@ -6,6 +6,41 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch MainTest",
+            "request": "launch",
+            "mainClass": "MainTest",
+            "projectName": "co_8d9901af"
+        },
+        {
+            "type": "java",
+            "name": "Launch CouponsDBDAO",
+            "request": "launch",
+            "mainClass": "Coupon.CouponsDBDAO",
+            "projectName": "co_8d9901af"
+        },
+        {
+            "type": "java",
+            "name": "Launch CompaniesDBDAO",
+            "request": "launch",
+            "mainClass": "Company.CompaniesDBDAO",
+            "projectName": "co_8d9901af"
+        },
+        {
+            "type": "java",
+            "name": "Launch Category",
+            "request": "launch",
+            "mainClass": "Category.Category",
+            "projectName": "co_8d9901af"
+        },
+        {
+            "type": "java",
+            "name": "Launch MainTest",
+            "request": "launch",
+            "mainClass": "Pool.MainTest",
+            "projectName": "co_8d9901af"
+        },
+        {
+            "type": "java",
             "name": "Launch ConnectionPool",
             "request": "launch",
             "mainClass": "Pool.ConnectionPool",

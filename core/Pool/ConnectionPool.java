@@ -7,7 +7,6 @@ import java.util.Stack;
 import Exception.CouponSystemException;
 import Exception.ExceptionMessage;
 
-
 public class ConnectionPool {
 	public static final int NUMBER_OF_CONNECTIONS = 10;
 	private static ConnectionPool instance = null;
@@ -39,7 +38,8 @@ public class ConnectionPool {
 			try {
 				connections.removeAllElements();
 			} catch (Exception e) {
-				System.out.println(ExceptionMessage.GENERAL_ERROR.getMessage());;
+				System.out.println(ExceptionMessage.GENERAL_ERROR.getMessage());
+				;
 			}
 		}
 		System.out.println("All connections closed.");
@@ -60,19 +60,19 @@ public class ConnectionPool {
 		return instance;
 	}
 
-	public Connection getConnection(){
+	public Connection getConnection() {
 		synchronized (connections) {
 			if (connections.isEmpty()) {
-				try{
+				try {
 					System.out.println("=====> " + Thread.currentThread().getName() + " is waiting");
 					System.out.println(connections.size());
 					wait();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-			} 
-				return connections.pop();
-			
+			}
+			return connections.pop();
+
 		}
 	}
 

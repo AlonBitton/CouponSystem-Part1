@@ -27,23 +27,25 @@ public class Test {
     private Thread thread;
 
     /**
-    * The enitre project is automated, CreateDB with {@link #createDB()} & {@link #DropDB}
-    * All the Companies, Customers, Coupons are generated with 
-    * random values for check proof the exsists methods and purchase limits.
-    * for testing its reccomendded to change sleep time at {@link #CouponExpirationDailyJob().run() line 38-39 }
-    * default sleep time set for 1 day.
+     * The enitre project is automated, CreateDB with {@link #createDB()} &
+     * {@link #DropDB}
+     * All the Companies, Customers, Coupons are generated with
+     * random values for check proof the exsists methods and purchase limits.
+     * for testing its reccomendded to change sleep time at
+     * {@link #CouponExpirationDailyJob().run() line 38-39 }
+     * default sleep time set for 1 day.
      */
     public Test() {
         this.couponExpirationDailyJob = new CouponExpirationDailyJob();
         thread = new Thread(couponExpirationDailyJob);
         System.out.println("=========== Test Started ===========");
-        thread.start();
         DropDB();
         createDB();
+        thread.start();
         loginMangerAdministrator();
         loginMangerComapny();
         loginMangerCustomer();
-        couponExpirationDailyJob.stopJob();
+        // couponExpirationDailyJob.stopJob();
 
     }
 
@@ -81,6 +83,7 @@ public class Test {
             AdminFacade adminFacade = (AdminFacade) clientFacade;
             System.out.println("=========== Start Admin Facade ===========");
             // CompanyFacade Login Company
+            System.out.println("=========== Creating CompanyFacade login details ===========");
             Company c1 = new Company(0, "C1@email.com", "C1C1");
             adminFacade.addCompany(c1);
             System.out.println("=========== Create new Companies ===========");
@@ -129,7 +132,9 @@ public class Test {
             adminFacade.getOneCompany(company1.getId());
 
             // CustomerFacade login Customer
+            System.out.println("=========== Creating CustomerFacade login details ===========");
             Customer A1 = new Customer(0, "A1", "A1", "A1@email.com", "A1A1");
+            A1.setPassword("A1A1");
             adminFacade.addCustomer(A1);
             System.out.println("=========== Create new Customers ===========");
             Customer customer1 = new Customer();
@@ -187,7 +192,7 @@ public class Test {
         clientFacade = LM.login("C1@email.com", "C1C1", ClientType.COMPANY);
         if (clientFacade instanceof CompanyFacade) {
             CompanyFacade companyFacade = (CompanyFacade) clientFacade;
-
+            System.out.println();
             System.out.println("=========== Start Company Facade ===========");
 
             Coupon coupon1 = new Coupon(0, 0, null, null, null, null, null, null, 0, 0);
@@ -250,34 +255,82 @@ public class Test {
             coupon5.setPrice(RandomPrice());
             companyFacade.addCoupon(coupon5);
 
-            System.out.println("=========== Print Coupon" + "(" + coupon5.getId() + ")" + " Before Update ===========");
-            System.out.println(coupon5);
+            Coupon coupon7 = new Coupon(0, 0, null, null, null, null, null, null, 0, 0);
+            coupon7.setCompanies_ID(companyFacade.getCompanyID());
+            coupon7.setCategory(randomCategory());
+            coupon7.setTitle("Coupon");
+            coupon7.setDescripton(coupon7.getTitle() + " Description");
+            coupon7.setImage(coupon7.getTitle() + " image");
+            coupon7.setStart_Date(LocalDate.now());
+            coupon7.setEnd_Date(LocalDate.now().plusDays(1));
+            coupon7.setAmoumt(5);
+            coupon7.setPrice(RandomPrice());
+            companyFacade.addCoupon(coupon7);
+
+            Coupon coupon8 = new Coupon(0, 0, null, null, null, null, null, null, 0, 0);
+            coupon8.setCompanies_ID(companyFacade.getCompanyID());
+            coupon8.setCategory(randomCategory());
+            coupon8.setTitle("Coupon");
+            coupon8.setDescripton(coupon8.getTitle() + " Description");
+            coupon8.setImage(coupon8.getTitle() + " image");
+            coupon8.setStart_Date(LocalDate.now());
+            coupon8.setEnd_Date(LocalDate.now().plusDays(1));
+            coupon8.setAmoumt(5);
+            coupon8.setPrice(RandomPrice());
+            companyFacade.addCoupon(coupon8);
+
+            Coupon coupon9 = new Coupon(0, 0, null, null, null, null, null, null, 0, 0);
+            coupon9.setCompanies_ID(companyFacade.getCompanyID());
+            coupon9.setCategory(randomCategory());
+            coupon9.setTitle("Coupon");
+            coupon9.setDescripton(coupon9.getTitle() + " Description");
+            coupon9.setImage(coupon9.getTitle() + " image");
+            coupon9.setStart_Date(LocalDate.now());
+            coupon9.setEnd_Date(LocalDate.now().plusDays(1));
+            coupon9.setAmoumt(5);
+            coupon9.setPrice(RandomPrice());
+            companyFacade.addCoupon(coupon9);
+
+            Coupon coupon10 = new Coupon(0, 0, null, null, null, null, null, null, 0, 0);
+            coupon10.setCompanies_ID(companyFacade.getCompanyID());
+            coupon10.setCategory(randomCategory());
+            coupon10.setTitle("Coupon");
+            coupon10.setDescripton(coupon10.getTitle() + " Description");
+            coupon10.setImage(coupon10.getTitle() + " image");
+            coupon10.setStart_Date(LocalDate.now());
+            coupon10.setEnd_Date(LocalDate.now().plusDays(1));
+            coupon10.setAmoumt(5);
+            coupon10.setPrice(RandomPrice());
+            companyFacade.addCoupon(coupon10);
+
+            System.out.println("=========== Print Coupon" + "(" + coupon7.getId() + ")" + " Before Update ===========");
+            System.out.println(coupon7);
             Coupon coupon6 = new Coupon(0, 0, null, null, null, null, null, null, 0, 0);
             coupon6.setCompanies_ID(companyFacade.getCompanyID());
-            coupon6.setCategory(coupon5.getCategory());
-            coupon6.setTitle(coupon5.getTitle() + " Updated");
-            coupon6.setDescripton(coupon5.getDescripton() + " Updated");
-            coupon6.setImage(coupon5.getImage() + " Updated");
+            coupon6.setCategory(coupon7.getCategory());
+            coupon6.setTitle(coupon7.getTitle() + " Updated");
+            coupon6.setDescripton(coupon7.getDescripton() + " Updated");
+            coupon6.setImage(coupon7.getImage() + " Updated");
             coupon6.setStart_Date(LocalDate.now());
             coupon6.setEnd_Date(LocalDate.now().plusDays(5));
             coupon6.setAmoumt(3);
-            coupon6.setPrice(coupon5.getPrice());
+            coupon6.setPrice(coupon7.getPrice());
 
-            System.out.println("=========== Print Coupon" + "(" + coupon5.getId() + ")" + " After Update ===========");
+            System.out.println("=========== Print Coupon" + "(" + coupon7.getId() + ")" + " After Update ===========");
             companyFacade.updateCoupon(coupon6);
             System.out.println(coupon6);
 
             System.out.println("=========== Print all Coupons ===========");
-            companyFacade.getCompanyAllCoupons(companyFacade.getCompanyID());
+            System.out.println(companyFacade.getCompanyAllCoupons(companyFacade.getCompanyID()));
 
             System.out.println("=========== Delete Coupon" + "(" + coupon6.getId() + ")" + " ===========");
             companyFacade.deleteCoupon(companyFacade.getCompanyID(), coupon6.getId());
-
-            System.out.println("=========== Print all Coupons By Category ===========");
-            companyFacade.getCompanyCouponsByCategory(companyFacade.getCompanyID(), randomCategory().value);
+            Category ran = randomCategory();
+            System.out.println("=========== Print all Coupons By Category " + ran + " ===========");
+            companyFacade.getCompanyCouponsByCategory(companyFacade.getCompanyID(), ran.value);
 
             int price = (int) (Math.random() * 50 + 40);
-            System.out.println("=========== Print all Coupons By Price " + price + "===========");
+            System.out.println("=========== Print all Coupons By Price " + price + " ===========");
             companyFacade.getCompanyCouponsByPrice(companyFacade.getCompanyID(), price);
 
             System.out.println("=========== End Company Facade ===========");
@@ -289,24 +342,29 @@ public class Test {
         ClientFacade clientFacade;
         clientFacade = LM.login("A1@email.com", "A1A1", ClientType.CUSTOMER);
         if (clientFacade instanceof CustomerFacade) {
+            System.out.println();
             System.out.println("=========== Start Customer Facade ===========");
 
             CustomerFacade customerFacade = (CustomerFacade) clientFacade;
-            System.out.println("=========== Purchase 4 Random Coupons ===========");
-            customerFacade.purchaseCoupon(1, 1);
+            System.out.println("=========== Trying to Purchase 8 Random Coupons ===========");
+            customerFacade.purchaseCoupon(customerFacade.getCustomerID(), 1);
             customerFacade.purchaseCoupon(customerFacade.getCustomerID(), 2);
             customerFacade.purchaseCoupon(customerFacade.getCustomerID(), 3);
             customerFacade.purchaseCoupon(customerFacade.getCustomerID(), 4);
             customerFacade.purchaseCoupon(customerFacade.getCustomerID(), 5);
+            customerFacade.purchaseCoupon(customerFacade.getCustomerID(), 6);
+            customerFacade.purchaseCoupon(customerFacade.getCustomerID(), 7);
+            customerFacade.purchaseCoupon(customerFacade.getCustomerID(), 8);
 
             System.out.println("=========== Print all Customer Coupons ===========");
-            customerFacade.getCustomerCoupons();
+            System.out.println(customerFacade.getCustomerCoupons());
 
-            System.out.println("=========== Print all Coupons By Category ===========");
-            customerFacade.getCouponsByCategory(3);
+            Category ran = randomCategory();
+            System.out.println("=========== Print all Coupons By Category " + ran + " ===========");
+            customerFacade.getCouponsByCategory(ran.value);
 
             int price = (int) (Math.random() * 50 + 40);
-            System.out.println("=========== Print all Coupons By Price " + price + "===========");
+            System.out.println("=========== Print all Coupons By Price " + price + " ===========");
             customerFacade.getCouponsByPrice(price);
 
             System.out.println("=========== Print Customer Details ===========");

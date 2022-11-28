@@ -24,23 +24,24 @@ public class CouponExpirationDailyJob implements Runnable {
         while (StillRunning) {
             System.out.println("%%%%%%%%%%%%%%%%%%%% Daily Job Running %%%%%%%%%%%%%%%%%%%%");
             List<Coupon> expired = couponsDAO.getAllCoupons();
-            new HashMap<>();
+
             for (Coupon coupon : expired) {
                 if (coupon.getEnd_Date().isBefore(LocalDate.now())) {
                     int id = coupon.getId();
                     couponsDAO.deleteCoupon(id);
                     System.out.println("=========== Expired Coupons deleted " + id + " ===========");
-
                 }
             }
             try {
-                TimeUnit.SECONDS.sleep(10); // For testing un-comment this line.
-                // TimeUnit.DAYS.sleep(1); // ^ comment this line after uncomment line 38.
-            } catch (InterruptedException e) {
+                Thread.sleep(10000);
+                // TimeUnit.SECONDS.sleep(10); // For testing un-comment this line.
+                // TimeUnit.DAYS.sleep(1); // ^ comment this line after uncomment line 36.
+            } catch (Exception e) {
                 e.getMessage();
             }
 
         }
+
     }
 
     public void stopJob() {

@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
 import Category.Category;
 import Company.Company;
 import Coupon.Coupon;
@@ -36,15 +38,22 @@ public class Test {
      * default sleep time set for 1 day.
      */
     public Test() {
-        this.couponExpirationDailyJob = new CouponExpirationDailyJob();
-        thread = new Thread(couponExpirationDailyJob);
         System.out.println("=========== Test Started ===========");
         DropDB();
         createDB();
+        this.couponExpirationDailyJob = new CouponExpirationDailyJob();
+        thread = new Thread(couponExpirationDailyJob);
         thread.start();
         loginMangerAdministrator();
         loginMangerComapny();
         loginMangerCustomer();
+        try {
+            System.out.println("Sleep in 25 sec");
+            ConnectionPool.getInstance().closeAllConnections();
+        } catch (Exception e) {
+        }
+        couponExpirationDailyJob.stopJob();
+        thread.interrupt();
         // couponExpirationDailyJob.stopJob();
 
     }

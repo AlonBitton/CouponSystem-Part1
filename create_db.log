@@ -47,3 +47,2012 @@ foreign key (Customer_id) references Customers(ID),
 Coupon_id int NOT NULL,
 foreign key (Coupon_id) references Coupons(ID)
 ) 
+
+-------
+28/16/2022 14:16:18
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/32/2022 14:32:14
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/33/2022 14:33:07
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/33/2022 14:33:57
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/34/2022 14:34:40
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/45/2022 14:45:02
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/45/2022 14:45:24
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/45/2022 14:45:52
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/48/2022 14:48:28
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/49/2022 14:49:01
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/49/2022 14:49:21
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/49/2022 14:49:38
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/49/2022 14:49:59
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/50/2022 14:50:19
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/50/2022 14:50:45
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/51/2022 14:51:13
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/51/2022 14:51:34
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/51/2022 14:51:58
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/58/2022 14:58:05
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/58/2022 14:58:41
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/01/2022 15:01:20
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/01/2022 15:01:43
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/02/2022 15:02:12
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/03/2022 15:03:33
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/05/2022 15:05:46
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/07/2022 15:07:13
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/09/2022 15:09:33
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/09/2022 15:09:54
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/10/2022 15:10:58
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/11/2022 15:11:49
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/12/2022 15:12:27
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/13/2022 15:13:16
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/14/2022 15:14:00
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/15/2022 15:15:41
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/16/2022 15:16:35
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/17/2022 15:17:15
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/17/2022 15:17:44
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/18/2022 15:18:11
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/18/2022 15:18:43
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/19/2022 15:19:15
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 
+
+-------
+28/19/2022 15:19:29
+-------
+
+create schema CouponSystem 
+use CouponSystem 
+create table Companies(
+ID int primary key auto_increment, 
+name varchar(255),
+email varchar(255), 
+password varchar(255)
+) 
+create table Customers(
+ID int primary key auto_increment,
+First_Name varchar(255),
+Last_Name varchar(255),
+Email varchar(255),
+password varchar(255)
+) 
+create table Categories(
+ID int primary key auto_increment,
+Name varchar(255),
+Category enum('Food', 'Electricity', 'Restaurants', 'Vacations')
+) 
+insert into Categories values(1, 'Food', 'Food') 
+insert into Categories values(2, 'Electricity', 'Electricity') 
+insert into Categories values(3, 'Restaurants', 'Restaurants') 
+insert into Categories values(4, 'Vacations', 'Vacations') 
+create table Coupons(
+ID int primary key auto_increment,
+Company_ID int NOT NULL,
+foreign key (Company_ID) references Companies(ID),
+Category_ID int NOT NULL,
+foreign key (Category_ID) references Categories(ID),
+Title varchar(255),
+Description varchar(255),
+Start_Date date,
+End_Date date,
+Amount integer,
+Price double,
+Image varchar(255)
+) 
+create table Customers_VS_Coupons(
+Customer_id int NOT NULL,
+foreign key (Customer_id) references Customers(ID),
+Coupon_id int NOT NULL,
+foreign key (Coupon_id) references Coupons(ID)
+) 

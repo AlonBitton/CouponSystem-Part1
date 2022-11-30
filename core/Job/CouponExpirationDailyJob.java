@@ -1,7 +1,6 @@
 package Job;
 
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -19,6 +18,11 @@ public class CouponExpirationDailyJob implements Runnable {
         this.couponsDAO = new CouponsDBDAO();
     }
 
+    /*
+     * Daily job, checks all the coupuns exists in program DB,
+     * search for expired Coupuns and delete the.
+     * Default sleep time set to 10 seconds for testing.
+     */
     @Override
     public void run() {
         while (StillRunning) {
@@ -33,9 +37,9 @@ public class CouponExpirationDailyJob implements Runnable {
                 }
             }
             try {
-                Thread.sleep(10000);
-                // TimeUnit.SECONDS.sleep(10); // For testing un-comment this line.
-                // TimeUnit.DAYS.sleep(1); // ^ comment this line after uncomment line 36.
+                TimeUnit.SECONDS.sleep(10);  /* For testing job time set for 10 seconds. */
+                 /* TimeUnit.DAYS.sleep(1); //  uncomment this line after comment line 36 to set
+                 thread sleep time for 1 day. */
             } catch (Exception e) {
                 e.getMessage();
             }
@@ -44,6 +48,9 @@ public class CouponExpirationDailyJob implements Runnable {
 
     }
 
+    /* Stop method for the daily job.
+    set the StillRunning boolean to false.
+    Close all remaning connections. */
     public void stopJob() {
         StillRunning = false;
         try {

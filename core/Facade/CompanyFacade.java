@@ -7,6 +7,7 @@ import java.util.List;
 
 import Company.Company;
 import Coupon.Coupon;
+import Exception.ExceptionMessage;
 import Pool.ConnectionPool;
 
 public class CompanyFacade extends ClientFacade{
@@ -33,8 +34,7 @@ public class CompanyFacade extends ClientFacade{
                 return true;
             }
         } catch (Exception e) {
-            System.out.println("Operation failed");
-            e.printStackTrace();
+            System.out.println(ExceptionMessage.AUTHENTICATION_FAILED.getMessage());
         }
 
         return false;

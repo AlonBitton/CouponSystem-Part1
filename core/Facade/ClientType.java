@@ -6,11 +6,7 @@ public enum ClientType {
     CUSTOMER("Customer");
 
     private final String clientType;
-
-    /**
-     * Full constructor
-     * @param type is the client type
-     */
+    
     ClientType(String type){
         this.clientType=type;
     }

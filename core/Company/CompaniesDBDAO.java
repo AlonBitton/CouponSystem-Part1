@@ -13,9 +13,14 @@ import Exception.ExceptionMessage;
 
 public class CompaniesDBDAO implements CompanyDAO {
 
-    /**
-     * Checks if comany exists by sending Query to DB,
-     * Checks if any exists comany have the same email & password
+
+    
+    /** 
+     * Checks if comapny exists in DB,
+     * by checking if any company has the injected email and password.
+     * @param email
+     * @param password
+     * @return boolean
      */
     public boolean isCompanyExists(String email, String password) {
         String sql = "SELECT email FROM Companies WHERE email = ? AND password = ?";
@@ -42,14 +47,16 @@ public class CompaniesDBDAO implements CompanyDAO {
 
     }
 
-    /**
-     * Add new company to the program DB,
-     * checks before adding if company exists using
-     * {@link #isCompanyExists(Email, Password)}
+    
+    /** 
+     * Add new company to DB, 
+     * before adding new company checks if any company exists
+     * with the same email.
+     * @param company
+     * @return int
      */
     public int addCompany(Company company) {
-        String sql = "insert into Companies (id, name, email, password) values(0, ?, ?, ?)"; // get values from
-                                                                                             // Company() constractur.
+        String sql = "insert into Companies (id, name, email, password) values(0, ?, ?, ?)"; // get values from                                                                                     // Company() constractur.
         String sql2 = "select * from Companies where Email = ?";
         Connection con = ConnectionPool.getInstance().getConnection();
         try {
@@ -84,9 +91,12 @@ public class CompaniesDBDAO implements CompanyDAO {
 
     }
 
-    /**
-     * Update exists company Name, email. password.
-     * Update exists company by specific CopmanyID
+    
+    /** 
+     * Checks if the company exists by email.
+     * Update existing company Name, Email, and pasword
+     * Identify the company by companyID.
+     * @param company
      */
     public void updateCompany(Company company) {
         String sql = "update Companies set name = ?, email = ?, password = ? where id = ?"; // quarry
@@ -119,9 +129,10 @@ public class CompaniesDBDAO implements CompanyDAO {
         return;
     }
 
-    /**
-     * Delete exists company by sending Query to DB,
-     * Will work only if company not own any coupons!!
+    
+    /** 
+     * Delete company from DB.
+     * @param CompanyID
      */
     public void deleteCompany(int CompanyID) {
         String sql = "delete from Companies where id = ?";
@@ -142,11 +153,11 @@ public class CompaniesDBDAO implements CompanyDAO {
         }
     }
 
-    /**
-     * Should be used to delete companies with coupons.
-     * First gets all company coupons identify them by CompanyID,
-     * Then deletes all companies coupons by sending Query to DB,
-     * Delete exists company by sending Query to DB.
+    
+    /** 
+     * Delete Company with Coupons from DB.
+     * Delete all Company Coupons from other tables.
+     * @param CompanyID 
      */
     public void deleteCompanyWithCoupons(int CompanyID) {
         String sql = "select * from Coupons where Company_ID = ?";
@@ -182,9 +193,10 @@ public class CompaniesDBDAO implements CompanyDAO {
         }
     }
 
-    /**
-     * Get all exists companies by sending Query to DB.
-     * return <List>
+    
+    /** 
+     * Return all exists Companies from DB.
+     * @return List<Company>
      */
     public List<Company> getAllCompanies() {
         String sql = "select * from Companies";
@@ -215,9 +227,12 @@ public class CompaniesDBDAO implements CompanyDAO {
         return null;
     }
 
-    /**
-     * Get one company identify by CompanyID.
-     * return Object -> company / return null if not found.
+    
+    /** 
+     * Return one Company from DB. 
+     * Identify by CompanyID
+     * @param CompanyID
+     * @return Company
      */
     public Company getOneCompany(int CompanyID) {
         String sql = "select * from Companies where id = ?";
@@ -247,12 +262,6 @@ public class CompaniesDBDAO implements CompanyDAO {
             }
         }
         return null;
-    }
-
-    public static void main(String[] args) {
-        CompaniesDBDAO cd = new CompaniesDBDAO();
-        cd.getOneCompany(1);
-        
     }
 
 }

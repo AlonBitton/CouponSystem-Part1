@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import Category.Category;
 import Coupon.Coupon;
 import Exception.CouponSystemException;
@@ -16,13 +15,12 @@ import Pool.ConnectionPool;
 public class CustomersDBDAO implements CustomerDAO {
 
     /**
-     * Checks is customer exists by sending Query to DB,
-     * Checks if any customer in the DB have the same email and password.
+     * Checks is customer exists in DB,
+     * Checks if any customer have the same email and password.
      * 
      * @param Email
      * @param password
      * @return boolean
-     * @throws CouponSystemException
      */
     public boolean isCustomerExists(String Email, String password) {
         String sql = "SELECT Email FROM Customers WHERE Email = ? AND password = ?";
@@ -50,13 +48,9 @@ public class CustomersDBDAO implements CustomerDAO {
 
     /**
      * Add new customer to DB,
-     * First send Query to DB to check if any customer in DB has the same email.
-     * If not insert the new customer the the DB by sending Query.
-     * Return <int> CustomerID OR return if exists.
-     * 
+     * First check if any customer in DB have the same email.
      * @param customer
      * @return int
-     * @throws CouponSystemException
      */
     public int addCustomer(Customer customer) {
         String sql = "insert into Customers (id, First_Name, Last_Name, Email, password) values(0, ?, ?, ?, ?)";
@@ -96,11 +90,9 @@ public class CustomersDBDAO implements CustomerDAO {
     }
 
     /**
-     * Update Exists Customer first name, last name. email and password
+     * Update Exists Customer First name, last name, email, password.
      * Identify customer by ID number.
-     * 
      * @param customer
-     * @throws CouponSystemException
      */
     public void updateCutomer(Customer customer) {
         String sql = "update Customers set First_Name = ?, Last_Name = ?, Email = ?, password = ? where id = ?"; // quarry
@@ -137,14 +129,10 @@ public class CustomersDBDAO implements CustomerDAO {
     }
 
     /**
-     * Delete customer from program DB,
+     * Delete customer from DB
      * Identify customer by CustomerID
-     * First delete customer coupons by {@link #deleteCutomerCoupons(int)}
-     * Then send Query to DB to delete the Customer.
-     * 
      * @param CustomerID
-     * @throws CouponSystemException
-     */
+     *      */
     public void deleteCutomer(int CustomerID) {
         String sql = "delete from Customers where id = ?";
         Connection con = ConnectionPool.getInstance().getConnection();
@@ -166,11 +154,9 @@ public class CustomersDBDAO implements CustomerDAO {
     }
 
     /**
-     * Delete customer coupons by sending Query to program DB.
+     * Delete customer and customer coupons.
      * Identify customer by CustomerID.
-     * 
      * @param CustomerID
-     * @throws CouponSystemException
      */
     private void deleteCutomerCoupons(int CustomerID) {
         String sql = "delete from customers_vs_coupons where Customer_id = ?";
@@ -192,16 +178,11 @@ public class CustomersDBDAO implements CustomerDAO {
     }
 
     /**
-     * Get customer coupons by Price limit.
-     * Send Query to program DB, Identify customer by CustomerID to get all customer
-     * coupons.
-     * Sort return coupons by Price limit <double>
-     * Return <List> OR null if not exists.
-     * 
+     * Get all Customer Coupons by price limit.
+     * Identify Customer by CustomerID, sort by Price.
      * @param customerID
      * @param Price
      * @return List<Coupon> || null
-     * @throws CouponSystemException
      */
     public List<Coupon> getCouponsByPrice(int customerID, double Price) {
         String sql = "Select * from coupons INNER JOIN customers_vs_coupons ON coupons.id = customers_vs_coupons.Coupon_id where Customer_id = ? AND coupons.price < ?";
@@ -242,16 +223,11 @@ public class CustomersDBDAO implements CustomerDAO {
     }
 
     /**
-     * Get coustomer coupons by category.
-     * Send Query to program DB, Identify customer by CustomerID to get all customer
-     * coupons.
-     * Sort return coupons by CategoryID <int>
-     * Return <List> OR null if not exists.
-     * 
+     * Get coustomer coupons sorted by category.
+     * Identify Customer by CustomeriD, Category by CategoryID.
      * @param customerID
      * @param categoryID
      * @return List<Coupon>
-     * @throws CustomerException
      */
     public List<Coupon> getCouponsByCategory(int customerID, int categoryID) {
         String sql = "Select * from coupons INNER JOIN customers_vs_coupons ON coupons.id = customers_vs_coupons.Coupon_id where Customer_id = ? AND coupons.category_id = ?";
@@ -291,11 +267,8 @@ public class CustomersDBDAO implements CustomerDAO {
     }
 
     /**
-     * Get coustomer coupons by category.
-     * Send Query to program DB, Identify customer by CustomerID to get all customer
-     * coupons.
-     * Return <List> OR null if not exists.
-     * 
+     * Get all coustomer coupons
+     * Identify customer by CustomerID.
      * @param customerID
      * @return List<Coupon>
      */
@@ -336,9 +309,7 @@ public class CustomersDBDAO implements CustomerDAO {
     }
 
     /**
-     * Get all customer exists in program DB.
-     * Return <List> OR null if not exists
-     * 
+     * Get all customer exists in DB.
      * @return List<Customer>
      */
     public List<Customer> getAllCustomers() {
@@ -372,14 +343,10 @@ public class CustomersDBDAO implements CustomerDAO {
     }
 
     /**
-     * Get one coustomer.
-     * Send Query to program DB, Identify customer by CustomerID to get customer
-     * details.
-     * Return <Object> Customer OR null if not exists.
-     * 
+     * Get one specific coustomer.
+     * Identify custoemr by CustomerID
      * @param CustomerID
      * @return Customer
-     * @throws CouponSystemException
      */
     public Customer getOneCustomer(int CustomerID) {
         String sql = "select * from Customers where id = ?";

@@ -9,6 +9,13 @@
             "name": "Launch MainTest",
             "request": "launch",
             "mainClass": "MainTest",
+            "projectName": "CouponSystem_731637ae"
+        },
+        {
+            "type": "java",
+            "name": "Launch MainTest",
+            "request": "launch",
+            "mainClass": "MainTest",
             "projectName": "co_8d9901af"
         },
         {

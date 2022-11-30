@@ -8,13 +8,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import Category.Category;
 import Company.Company;
 import Coupon.Coupon;
 import Customer.Customer;
-
+import Exception.ExceptionMessage;
 import Facade.AdminFacade;
 import Facade.ClientFacade;
 import Facade.ClientType;
@@ -29,13 +28,13 @@ public class Test {
     private Thread thread;
 
     /**
-     * The enitre project is automated, CreateDB with {@link #createDB()} &
-     * {@link #DropDB}
-     * All the Companies, Customers, Coupons are generated with
-     * random values for check proof the exsists methods and purchase limits.
-     * for testing its reccomendded to change sleep time at
-     * {@link #CouponExpirationDailyJob().run() line 38-39 }
-     * default sleep time set for 1 day.
+     The entire project is automated, CreateDB with 
+     {@link #createDB()} & {@link #DropDB} using ScriptRunner.
+     All the Companies, Customers, and Coupons are generated with 
+     random values for check proof of the existing methods and purchase limits.
+     Default daily job set for 10 seconds for testing purposes.
+     To change go to -> {@link #CouponExpirationDailyJob().run() line 38-39 }
+     The program will automatically shut down after 25 seconds.
      */
     public Test() {
         System.out.println("=========== Test Started ===========");
@@ -48,13 +47,12 @@ public class Test {
         loginMangerComapny();
         loginMangerCustomer();
         try {
-            System.out.println("Sleep in 25 sec");
+            System.out.println("The program will automatically shut down after 25 seconds");
+            thread.join(25000);
+            couponExpirationDailyJob.stopJob();
             ConnectionPool.getInstance().closeAllConnections();
         } catch (Exception e) {
         }
-        couponExpirationDailyJob.stopJob();
-        thread.interrupt();
-        // couponExpirationDailyJob.stopJob();
 
     }
 
@@ -203,6 +201,7 @@ public class Test {
             CompanyFacade companyFacade = (CompanyFacade) clientFacade;
             System.out.println();
             System.out.println("=========== Start Company Facade ===========");
+            System.out.println("=========== Create 10 Coupuns with some random values ===========");
 
             Coupon coupon1 = new Coupon(0, 0, null, null, null, null, null, null, 0, 0);
             coupon1.setCompanies_ID(companyFacade.getCompanyID());
@@ -384,8 +383,8 @@ public class Test {
     }
 
     /**
-     * Automated program create MySQL database using ScriptRunner.
-     * No need to create any Schema / table for this project.
+     * Automated program to create MySQL database using ScriptRunner.
+     * No need to manually create any Schema / table for this project.
      */
     private void createDB() {
         try {
@@ -403,7 +402,7 @@ public class Test {
      * Drop MySQL enitre database.
      */
     private void DropDB() {
-        String sql = "drop SCHEMA CouponSystem";
+        String sql = "DROP SCHEMA CouponSystem";
         try (Connection con = ConnectionPool.getInstance().getConnection();) {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.executeUpdate();

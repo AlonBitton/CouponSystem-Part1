@@ -15,10 +15,11 @@ import Pool.ConnectionPool;
 
 public class CouponsDBDAO implements CouponsDAO {
 
-    /**
-     * Checks if coupon exists by sending Query to DB search if any coupon that
-     * created by the same Company have the same Title.
-     * Return boolean.
+    
+    /** 
+     * Checks if the Coupon exists in DB with the same Title from the same Company. 
+     * @param coupon
+     * @return boolean
      */
     public boolean isCouponExists(Coupon coupon) {
         String sql = " SELECT * FROM coupons where Title = ? AND Company_ID = ?";
@@ -45,11 +46,12 @@ public class CouponsDBDAO implements CouponsDAO {
         return false;
     }
 
-    /**
-     * Add new coupon to program DB,
-     * First checks if coupon exists by {@link #isCouponExists(Coupon)} ->
-     * Search if any coupon created by the same Company have the same Title.
-     * Return <int> / 0 if exist OR the new auto-generated CompanyID.
+    
+    /** 
+     * Add new Coupon to DB. 
+     * First chekcs if any Coupon exists with {@link #isCouponExists(Coupon)} 
+     * @param coupon
+     * @return int
      */
     public int addCoupon(Coupon coupon) {
         String sql = "insert into coupons values(0, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -89,10 +91,10 @@ public class CouponsDBDAO implements CouponsDAO {
 
     }
 
-    /**
-     * Update exists coupon Category, Title, Description, Start_Date, End_Date,
-     * Amount, Price, Image.
-     * Identify coupon by ID.
+    
+    /** 
+     * Update exists Coupon: Category, title, description, Start Date, and End Date.
+     * @param coupon
      */
     public void updateCoupon(Coupon coupon) {
         String sql = "update coupons set category_id = ?, title = ?, description = ?, start_date = ?, end_date = ?, amount = ?, price = ?, image = ? where id = ? ";
@@ -125,9 +127,12 @@ public class CouponsDBDAO implements CouponsDAO {
         return;
     }
 
-    /**
-     * Get Specific all company coupons, identify by ID.
-     * Return <List> OR null if not exits.
+    
+    /** 
+     * Get all Coupons from a specific Company.
+     * Identify by CompanyID.
+     * @param CompanyID
+     * @return List<Coupon>
      */
     public List<Coupon> getCompanyAllCoupons(int CompanyID) {
         String sql = "select * from coupons where Company_ID = ?";
@@ -164,10 +169,13 @@ public class CouponsDBDAO implements CouponsDAO {
         return null;
     }
 
-    /**
-     * Get Specifc comapny coupons with Price limit.
-     * Identify company coupons by ID, set Price limit.
-     * return <List> OR null if not exists.
+    
+    /** 
+     * Get all Coupons from a specific Company by Price limit.
+     * Identify by CompanyID, sorted by Price.
+     * @param CompanyID
+     * @param Price
+     * @return List<Coupon>
      */
     public List<Coupon> getCompanyCouponsByPrice(int CompanyID, double Price) {
         String sql = "select * from coupons where Company_ID = ? AND price < ?";
@@ -206,8 +214,10 @@ public class CouponsDBDAO implements CouponsDAO {
         return null;
     }
 
-    /**
-     * Get all exists coupons in program DB by sending Query to DB.
+    
+    /** 
+     * Get all exists Coupuns in DB.
+     * @return List<Coupon>
      */
     public List<Coupon> getAllCoupons() {
         String sql = "select * from coupons";
@@ -243,10 +253,13 @@ public class CouponsDBDAO implements CouponsDAO {
         return null;
     }
 
-    /**
-     * Get specific company coupons sort by Category ID.
-     * Identify company by CompanyID, Identify category by CategoryID.
-     * retun <List> OR null if not exists/
+    
+    /** 
+     * Get all Coupons from a specific Company by Catergory.
+     * Identify by CompanyID, sorted by CategoryID.
+     * @param CompanyID
+     * @param CategoriesID
+     * @return List<Coupon>
      */
     public List<Coupon> getCompanyCouponsByCategory(int CompanyID, int CategoriesID) {
         String sql = "select * from coupons where Company_ID = ? AND Category_ID = ?";
@@ -285,10 +298,12 @@ public class CouponsDBDAO implements CouponsDAO {
         return null;
     }
 
-    /**
-     * Get one coupon by sending Query to program DB.
-     * Identify coupon by CouponID.
-     * Return Coupon ID. If found Print coupon details.
+    
+    /** 
+     * Get one specific Coupun from DB.
+     * Identify by CoupunID
+     * @param CouponID
+     * @return int
      */
     public int getOneCoupon(int CouponID) {
         String sql = "select * from coupons where id = ?";
@@ -325,12 +340,14 @@ public class CouponsDBDAO implements CouponsDAO {
         return 0;
     }
 
-    /**
-     * Check coupon amount. Identify by CouponID.
-     * Return <int> OR 0 if not exists.
+    
+   
+    /** 
+     * Check specific Coupun amount.
+     * Identify Coupun by CouponID.
+     * @param CouponID
+     * @return int
      */
-    private int amount;
-
     public int checkAmount(int CouponID) {
         String sql = "select * from coupons where id = ?";
         Connection con = ConnectionPool.getInstance().getConnection();
@@ -339,7 +356,7 @@ public class CouponsDBDAO implements CouponsDAO {
             ps.setInt(1, CouponID);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                amount = rs.getInt("amount");
+                int amount = rs.getInt("amount");
                 return amount;
             }
             if (!rs.next()) {
@@ -357,9 +374,12 @@ public class CouponsDBDAO implements CouponsDAO {
         return 0;
     }
 
-    /**
-     * Check coupon Expiration Date, Identify by CouponID.
-     * Return <LocalDate> end_date OR null if not exists.
+    
+    /** 
+     * Check specific Coupun expiration date.
+     * Identify by CoupunID
+     * @param CouponID
+     * @return LocalDate
      */
     public LocalDate checkExpirationDate(int CouponID) {
         String sql = "select * from coupons where id = ?";
@@ -385,10 +405,13 @@ public class CouponsDBDAO implements CouponsDAO {
         return null;
     }
 
-    /**
-     * Check if Customer own specific Coupon.
-     * Identify Customer by CustomerID, Identify Coupon by CouponID.
-     * return <boolean>.s
+    
+    /** 
+     * Checks if Customer already own the Coupun.
+     * Identify Custoemr by CustomerID, identify Coupun by CouponID.
+     * @param CustomerID
+     * @param CouponID
+     * @return boolean
      */
     public boolean checkIFhaveCoupon(int CustomerID, int CouponID) {
         String sql = "select * from customers_vs_coupons where Customer_id = ? AND Coupon_id = ?";
@@ -414,15 +437,15 @@ public class CouponsDBDAO implements CouponsDAO {
         return false;
     }
 
-    /**
-     * Purchase coupon by customer. Execute by sending Query to program DB.
-     * Identify customer by CustomerID, identify coupond by CouponID.
-     * First, Use {@link #checkAmount(int)} to check if amount > 0.
-     * Then, Use {@link #checkExpirationDate(int)} to check ExpirationDate.
-     * Last check before execute, {@link #checkIFhaveCoupon(int, int)} to check if
-     * customer already owen the coupon.
-     * Sending Qurey to program DB to finaly purechase the coupon.
-     * For last deduct 1 coupon from Coupon amount using {@link #amount}
+    
+    /** 
+     * Purchase method for Coupuns.
+     * Checks Coupon amoumt > 0 with {@link #checkAmount(int)}.
+     * Checks expiration date is not expired with {@link #checkExpirationDate(int)}.
+     * Checks if the Custoemr not already own the Coupon with {@link #checkIFhaveCoupon(int, int)}.
+     * Identify Custoemr by CustomerID, identify Coupun by CouponID.
+     * @param CustomerID
+     * @param CouponID
      */
     public void addCouponPurchase(int CustomerID, int CouponID) {
         String insert = "insert into customers_vs_coupons values (?,  ?)";
@@ -462,11 +485,12 @@ public class CouponsDBDAO implements CouponsDAO {
         return;
     }
 
-    /**
-     * Delete coupon own by Customer. Identify by CustomerID, Identify coupon by
-     * CouponID.
-     * First sending Query to program DB, delete coupon from jonied table.
-     * Then delete from Coupon table Identify by ID.
+    
+    /** 
+     * Delete Coupon from Copuns table and Purchase table.
+     * Identify Custoemr by CustomerID, identify Coupun by CouponID.
+     * @param CustomerID
+     * @param CouponID
      */
     public void deleteCoupon(int CustomerID, int CouponID) {
         String sql = "delete from customers_vs_coupons where Customer_id = ? and Coupon_id = ? ";
@@ -492,10 +516,12 @@ public class CouponsDBDAO implements CouponsDAO {
         }
     }
 
-    /**
-     * Delete coupons Identify coupon by CouponID.
-     * First sending Query to program DB, delete coupon from jonied table.
-     * Then delete from Coupon table Identify by ID.
+    
+    /** 
+     * Another method of Coupon deletion, only with 1 identifier.
+     * Delete Coupon from Copuns table and Purchase table.
+     * Identify Coupon by CouponID.
+     * @param CouponID
      */
     public void deleteCoupon(int CouponID) {
         String sql = "delete from customers_vs_coupons where Coupon_id = ? ";
@@ -518,12 +544,6 @@ public class CouponsDBDAO implements CouponsDAO {
                 System.out.println(e.getMessage());
             }
         }
-    }
-
-    public static void main(String[] args) {
-        CouponsDBDAO cd = new CouponsDBDAO();
-
-        System.out.println(cd.getCompanyAllCoupons(1));
     }
 
 }
